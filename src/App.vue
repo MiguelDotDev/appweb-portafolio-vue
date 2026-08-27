@@ -7,7 +7,7 @@ const socials = [
   },
   {
     name: 'LinkedIn',
-    href: 'www.linkedin.com/in/miguel-angel-núñez-gómez-2a46a4431',
+    href: 'https://linkedin.com/in/miguel-angel-núñez-gómez-2a46a4431',
     icon: 'M6.94 5a2 2 0 1 1-4-.02 2 2 0 0 1 4 .02zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-3.96 4.77 0V21H22v-7.93c0-6.17-6.87-5.94-8.68-2.91V8.48z',
   },
   {
