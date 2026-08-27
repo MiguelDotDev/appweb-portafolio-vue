@@ -107,7 +107,7 @@ const socials = [
             class="group flex items-center gap-2 rounded-lg bg-teal-400 px-4 py-2.5 text-sm font-semibold text-[#0B0F19] transition-all duration-200 hover:-translate-y-0.5 hover:bg-teal-300"
           >
             <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current">
-              <path :d="socials[3].icon" />
+              <path :d="socials[3]!.icon" />
             </svg>
             Gmail
           </a>
