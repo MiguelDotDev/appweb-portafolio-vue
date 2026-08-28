@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import AOS from 'aos';
+AOS.init();
+
+
+const urlBase = import.meta.env.BASE_URL
 const socials = [
   {
     name: 'GitHub',
@@ -14,17 +19,15 @@ const socials = [
     name: 'YouTube',
     href: 'https://youtube.com/@holycodedev',
     icon: 'M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.6 15.6V8.4l6.27 3.6-6.27 3.6z',
-  },
-  {
-    name: 'Gmail',
-    href: 'mailto:miguel.nunez.dev@gmail.com',
-    icon: 'M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13zm2.2.5 7.8 5.86L19.8 6H4.2zM20 8.24l-7.4 5.56a1 1 0 0 1-1.2 0L4 8.24V18h16V8.24z',
-  },
+  }
 ]
+const subtitulosGenerales = "font-['Space_Grotesk',sans-serif] text-3xl font-bold tracking-tight text-slate-300/75 sm:text-6xl";
+const botonesNav = "mx-4 text-slate-400 text-2xs sm:text-4xs"
+
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#0B0F19] font-['Inter',sans-serif] text-slate-200 selection:bg-teal-400/30">
+  <div class="min-h-screen bg-[#0B0F19] font-['Inter',sans-serif] text-slate-200 selection:bg-teal-400/30 overflow-x-hidden">
 
     <!-- Fondo: grid + glows -->
     <div class="pointer-events-none fixed inset-0 overflow-hidden">
@@ -34,11 +37,13 @@ const socials = [
     </div>
 
     <!-- Navbar -->
-    <nav class="fixed top-0 left-0 z-50 w-full border-b border-white/5 bg-[#0B0F19]/80 backdrop-blur-md">
-      <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <nav class="fixed top-0 left-0 z-50 w-full border-b border-white/5 backdrop-blur-md shadow-2xl">
+      <div class="bg-[#0B0F19]/80">
+        <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
         <h1 class="font-['JetBrains_Mono',monospace] text-lg font-semibold tracking-tight text-white">
           <span class="text-teal-400">&lt;</span>Miguel<span class="text-teal-400">.dev</span><span class="text-teal-400">/&gt;</span>
         </h1>
+
         <span class="hidden items-center gap-2 rounded-full border border-white/10 px-3 py-1 font-['JetBrains_Mono',monospace] text-xs text-slate-400 sm:flex">
           <span class="relative flex h-1.5 w-1.5">
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
@@ -47,10 +52,18 @@ const socials = [
           disponible para proyectos
         </span>
       </div>
+      </div>
+
+
+      <div class="flex flex-row items-center justify-center py-4 bg-[#0B0F19]/20">
+        <a href="#Estudios" v-bind:class="botonesNav">Estudios</a>
+        <a href="#StackTecnologico" v-bind:class="botonesNav">Stack Tecnológico</a>
+        <a href="#Contacto" v-bind:class="botonesNav">Contacto</a>
+      </div>
     </nav>
 
     <!-- Hero -->
-    <main class="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center gap-14 px-6 pt-28 pb-20 lg:flex-row lg:gap-20">
+    <main class="relative z-10 mx-auto flex min-h-screen mb-[-20vh] max-w-6xl flex-col items-center justify-center gap-14 px-6 pt-28 pb-20 lg:flex-row lg:gap-20">
 
       <!-- Foto tipo ventana de código -->
       <div class="w-full max-w-sm shrink-0 lg:max-w-md">
@@ -76,7 +89,7 @@ const socials = [
         </span>
 
         <h2 class="font-['Space_Grotesk',sans-serif] text-4xl font-bold tracking-tight text-white sm:text-5xl">
-          Miguel Angel<br class="hidden sm:block" />
+          Miguel Angel <br class="hidden sm:block" />
           <span class="text-teal-400">Nuñez Gomez</span>
         </h2>
 
@@ -103,21 +116,55 @@ const socials = [
           </a>
 
           <a
-            href="#"
+            :href="`${urlBase}documentos/CV_Miguel_Angel_Nunez_Gomez.pdf`"
+            download
             class="group flex items-center gap-2 rounded-lg bg-teal-400 px-4 py-2.5 text-sm font-semibold text-[#0B0F19] transition-all duration-200 hover:-translate-y-0.5 hover:bg-teal-300"
           >
             <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current">
-              <path :d="socials[3]!.icon" />
+              <path :d="socials[2]!.icon" />
             </svg>
-            Gmail
+            Descargar CV
           </a>
         </div>
       </div>
     </main>
+
+
+    <div class="pb-40" id="Estudios"></div>
+    <div class="relative z-10 ms-20 text-left">
+      <h2 data-aos="fade-down" v-bind:class="subtitulosGenerales">Estudios</h2>
+      <div data-aos="fade-right" class="ml-8 mt-3">
+        <span class="birthstone-regular text-3xl leading-relaxed text-teal-400 sm:text-6xl">Universidad Tecnológica de Tula - Tepeji</span><br/>
+        <span class="text-slate-600">&gt;</span><span class="leading-relaxed text-slate-400 sm:text-2xl"> Técnico Superior Universitario en Desarrollo de Software Multiplataforma</span>
+        <span class="text-slate-600"> (2023 - 2025)</span><br/>
+        <span class="text-slate-600">&gt;</span><span class="leading-relaxed text-xl text-slate-400 sm:text-2xl"> Ingenieria en Gestión y Desarrollo de Software</span>
+        <span class="text-slate-600"> (2025 - En Curso)</span><br/>
+      </div>
+    </div>
+
+
+    <div class="pb-40" id="StackTecnologico"></div>
+    <div class="relative z-10 pb-20 me-20 text-right">
+      <h2 data-aos="fade-down" v-bind:class="subtitulosGenerales">Stack Tecnológico</h2>
+      <div data-aos="fade-left" class="h-[500px]">
+      </div>
+    </div>
+
+    
+
+
   </div>
 </template>
 
 <style>
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Birthstone&display=swap');
+@import "tailwindcss";
+@import 'aos/dist/aos.css';
+
+.birthstone-regular {
+  font-family: "Birthstone", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
 </style>
