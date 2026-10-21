@@ -5,6 +5,7 @@ import TheNavbar from '@/components/TheNavbar.vue'
 import HeroSection from '@/components/HeroSection.vue'
 import StackSection from '@/components/StackSection.vue'
 import ProjectsSection from '@/components/ProjectsSection.vue'
+import CertificationsSection from '@/components/CertificationsSection.vue'
 import AboutSection from '@/components/AboutSection.vue'
 import TheFooter from '@/components/TheFooter.vue'
 
@@ -53,6 +54,7 @@ onMounted(() => {
       <HeroSection />
       <StackSection />
       <ProjectsSection />
+      <CertificationsSection />
       <AboutSection />
     </main>
 
