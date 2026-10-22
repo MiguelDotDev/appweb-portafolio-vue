@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import SectionHeading from '@/components/SectionHeading.vue'
 import ProjectImageCarousel from '@/components/ProjectImageCarousel.vue'
+import ProjectImageModal from '@/components/ProjectImageModal.vue'
 import { projects } from '@/data/projects'
 import { getProjectImages } from '@/data/projectImages'
 import githubIcon from 'devicon/icons/github/github-original.svg'
@@ -23,6 +24,42 @@ const projectCards = computed(() =>
     })),
   })),
 )
+
+/** Una URL solo es válida si es una cadena con contenido real. */
+function hasUrl(value: string | null | undefined): value is string {
+  return typeof value === 'string' && value.trim().length > 0
+}
+
+/** Tarjeta cuya galería está abierta, o `null` si el modal está cerrado. */
+const openCardIndex = ref<number | null>(null)
+/** Índice de la imagen que la tarjeta mostraba al abrir la galería. */
+const openImageIndex = ref(0)
+
+/**
+ * Galería activa. Reutiliza la misma lista de imágenes que el carrusel de la
+ * tarjeta (nunca una copia), por lo que ambos siempre coinciden.
+ */
+const activeGallery = computed(() => {
+  const index = openCardIndex.value
+  if (index === null) return null
+  const card = projectCards.value[index]
+  if (!card) return null
+  return {
+    images: card.images,
+    projectTitle: card.project.title,
+    initialIndex: openImageIndex.value,
+  }
+})
+
+/** Abre la galería de una tarjeta en la imagen que está mostrando. */
+function openGallery(cardIndex: number, imageIndex: number): void {
+  openCardIndex.value = cardIndex
+  openImageIndex.value = imageIndex
+}
+
+function closeGallery(): void {
+  openCardIndex.value = null
+}
 </script>
 
 <template>
@@ -46,6 +83,7 @@ const projectCards = computed(() =>
         <ProjectImageCarousel
           :images="card.images"
           :project-title="card.project.title"
+          @open="(imageIndex) => openGallery(index, imageIndex)"
         />
 
         <!-- Contenido -->
@@ -71,7 +109,7 @@ const projectCards = computed(() =>
           <!-- Footer de la tarjeta -->
           <div class="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-4">
             <a
-              v-if="card.project.demoUrl"
+              v-if="hasUrl(card.project.demoUrl)"
               :href="card.project.demoUrl"
               target="_blank"
               rel="noopener noreferrer"
@@ -89,20 +127,13 @@ const projectCards = computed(() =>
               </svg>
             </a>
 
-            <span
-              v-else
-              class="font-mono text-[11px] leading-relaxed text-slate-500"
-            >
-              enlaces de demostración sin configurar
-            </span>
-
             <!-- Botón de GitHub (solo clicable si el proyecto tiene repositorio) -->
             <a
-              v-if="card.project.repoUrl"
+              v-if="hasUrl(card.project.repoUrl)"
               :href="card.project.repoUrl"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-200 transition-all duration-200 hover:-translate-y-0.5 hover:border-teal-400/40 hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400"
+              class="ml-auto inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-200 transition-all duration-200 hover:-translate-y-0.5 hover:border-teal-400/40 hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400"
               :aria-label="`Ver ${card.project.title} en GitHub`"
             >
               <img :src="githubIcon" alt="" aria-hidden="true" class="h-4 w-4 brightness-0 invert" />
@@ -115,7 +146,7 @@ const projectCards = computed(() =>
               disabled
               aria-disabled="true"
               title="Repositorio sin configurar"
-              class="inline-flex cursor-not-allowed items-center gap-2 rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2 text-xs font-semibold text-slate-500"
+              class="ml-auto inline-flex cursor-not-allowed items-center gap-2 rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2 text-xs font-semibold text-slate-500"
             >
               <img :src="githubIcon" alt="" aria-hidden="true" class="h-4 w-4 opacity-40 invert" />
               Ver en GitHub
@@ -124,5 +155,8 @@ const projectCards = computed(() =>
         </div>
       </article>
     </div>
+
+    <!-- Galería ampliada (reutiliza las imágenes de la tarjeta) -->
+    <ProjectImageModal :gallery="activeGallery" @close="closeGallery" />
   </section>
 </template>

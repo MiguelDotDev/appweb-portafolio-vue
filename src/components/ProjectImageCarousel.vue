@@ -18,9 +18,32 @@ const props = defineProps<{
   projectTitle: string
 }>()
 
+const emit = defineEmits<{
+  /** Se solicita ampliar la imagen visible (índice actual). */
+  (e: 'open', index: number): void
+}>()
+
 const { current, total, hasMultiple, currentImage, next, previous, goTo } = useImageCarousel(
   () => props.images,
 )
+
+/** Evita abrir la galería justo después de un gesto de deslizamiento. */
+let suppressClick = false
+
+/** Abre la galería en la imagen visible actualmente. */
+function openCurrent(): void {
+  if (!currentImage.value) return
+  emit('open', current.value)
+}
+
+/** Abre la galería al pulsar la imagen (nunca desde los controles). */
+function onTrackClick(): void {
+  if (suppressClick) {
+    suppressClick = false
+    return
+  }
+  openCurrent()
+}
 
 /* --- Gesto de deslizamiento (táctil) --- */
 let touchStartX = 0
@@ -29,6 +52,7 @@ let touchStartY = 0
 function onTouchStart(event: TouchEvent): void {
   const touch = event.changedTouches[0]
   if (!touch) return
+  suppressClick = false
   touchStartX = touch.clientX
   touchStartY = touch.clientY
 }
@@ -41,6 +65,8 @@ function onTouchEnd(event: TouchEvent): void {
   const deltaY = touch.clientY - touchStartY
   // Solo cuenta como deslizamiento horizontal.
   if (Math.abs(deltaX) < 40 || Math.abs(deltaX) <= Math.abs(deltaY)) return
+  // Tras un deslizamiento no debe abrirse la galería.
+  suppressClick = true
   if (deltaX < 0) next()
   else previous()
 }
@@ -55,6 +81,8 @@ function onTouchEnd(event: TouchEvent): void {
     tabindex="0"
     @keydown.left.prevent="previous"
     @keydown.right.prevent="next"
+    @keydown.enter.prevent.self="openCurrent"
+    @keydown.space.prevent.self="openCurrent"
   >
     <!-- Sin imágenes: estado de respaldo discreto -->
     <div
@@ -75,11 +103,12 @@ function onTouchEnd(event: TouchEvent): void {
       <span class="font-mono text-[11px]">Sin imágenes disponibles</span>
     </div>
 
-    <!-- Pista de imágenes -->
+    <!-- Pista de imágenes (un clic amplía la imagen visible) -->
     <div
       v-else
-      class="flex h-full w-full transition-transform duration-500 ease-out motion-reduce:transition-none"
+      class="flex h-full w-full cursor-zoom-in transition-transform duration-500 ease-out motion-reduce:transition-none"
       :style="{ transform: `translateX(-${current * 100}%)` }"
+      @click="onTrackClick"
       @touchstart.passive="onTouchStart"
       @touchend.passive="onTouchEnd"
     >
