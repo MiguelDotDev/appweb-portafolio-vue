@@ -23,11 +23,11 @@ export const socials: SocialLink[] = [
     href: 'https://linkedin.com/in/miguel-angel-núñez-gómez-2a46a4431',
     icon: 'M6.94 5a2 2 0 1 1-4-.02 2 2 0 0 1 4 .02zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-3.96 4.77 0V21H22v-7.93c0-6.17-6.87-5.94-8.68-2.91V8.48z',
   },
-  {
+  /*{
     name: 'YouTube',
     href: 'https://youtube.com/@holycodedev',
     icon: 'M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.6 15.6V8.4l6.27 3.6-6.27 3.6z',
-  },
+  }*/
 ]
 
 /** Ruta de descarga del CV (respeta el `base` de Vite). */

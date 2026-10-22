@@ -57,12 +57,16 @@ const sectionLinks = [
       </h1>
 
       <p class="mt-4 font-mono text-lg text-slate-400">
-        <span class="text-slate-600">&gt;</span> Desarrollador Fullstack
+        <span class="text-slate-600">&gt;</span> Desarrollador Fullstack <br/>
       </p>
 
       <p class="mt-4 max-w-md text-sm leading-relaxed text-slate-400 sm:text-base">
         Construyo aplicaciones web de extremo a extremo, del backend a la interfaz, con foco en código
         limpio, rendimiento y buena experiencia de usuario.
+      </p>
+
+      <p class="mt-4 font-mono text-md text-slate-400">
+        <span class="text-slate-500">miguel.nunez.dev@gmail.com</span>
       </p>
 
       <!-- Accesos rápidos -->
