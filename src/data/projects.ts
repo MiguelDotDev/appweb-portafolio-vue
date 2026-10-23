@@ -74,5 +74,26 @@ export const projects: Project[] = [
     imageAlt: 'Panel de demostración de FinanceTrack con tarjetas de resumen y gráfico de barras.',
     demoUrl: "https://migueldotdev.github.io/web-usuarios-firebase/",
     repoUrl: "https://github.com/MiguelDotDev/web-usuarios-firebase",
+  },
+  {
+    id: 'api-marketplace-aspnetcore',
+    title: 'API ASP Net Core Para Sistema de Marketplace',
+    summary:
+      'Desarrollo de una API backend para un marketplace universitario, diseñada para conectar un sitio web y una aplicación móvil mediante endpoints para la gestión de usuarios, productos y comunicación entre compradores y vendedores. Implementa autenticación mediante JWT, separación de responsabilidades con DTO e inyección de dependencias, y persistencia de datos con Entity Framework Core y SQL Server. Utiliza Docker y Docker Compose para facilitar el despliegue del backend y la base de datos en contenedores.',
+    tags: [
+      "C#",
+      "ASP.NET Core",
+      "REST API",
+      "SQL Server",
+      "Entity Framework Core",
+      "Docker",
+      "Docker Compose",
+      "JWT",
+      "MVC",
+      "Inyección de dependencias"
+    ],
+    imageAlt: 'Panel de demostración de FinanceTrack con tarjetas de resumen y gráfico de barras.',
+    demoUrl: null,
+    repoUrl: "https://github.com/MiguelDotDev/api-marketplace-aspnetcore",
   }
 ]

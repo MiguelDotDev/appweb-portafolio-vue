@@ -70,6 +70,21 @@ function closeGallery(): void {
   >
     <SectionHeading id="proyectos-title" eyebrow="$ ls ./proyectos" title="Proyectos" />
 
+    <div class="mb-8 space-y-4 sm:mb-10">
+      <p class="max-w-3xl text-base leading-relaxed text-slate-400">
+        Estos son algunos de los proyectos en los que he trabajado. Puedes descubrir más de mis desarrollos, experimentos y proyectos en mi perfil de GitHub.
+      </p>
+      <a
+        href="https://github.com/MiguelDotDev"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200 transition-all duration-200 hover:-translate-y-0.5 hover:border-teal-400/40 hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400"
+      >
+        <img :src="githubIcon" alt="" aria-hidden="true" class="h-4 w-4 brightness-0 invert" />
+        Ver más proyectos en GitHub
+      </a>
+    </div>
+
     <!-- Cuadrícula responsive: 1 columna en móvil, 2 columnas a partir de md -->
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
       <article

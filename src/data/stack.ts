@@ -24,6 +24,7 @@ import vueIcon from 'devicon/icons/vuejs/vuejs-original.svg'
 import jqueryIcon from 'devicon/icons/jquery/jquery-original.svg'
 import tailwindIcon from 'devicon/icons/tailwindcss/tailwindcss-original.svg'
 import dotnetIcon from 'devicon/icons/dotnetcore/dotnetcore-original.svg'
+import dotnetOriginalIcon from 'devicon/icons/dotnetcore/dotnetcore-original.svg'
 import flaskIcon from 'devicon/icons/flask/flask-original.svg'
 import springIcon from 'devicon/icons/spring/spring-original.svg'
 import mssqlIcon from 'devicon/icons/microsoftsqlserver/microsoftsqlserver-original.svg'
@@ -39,6 +40,10 @@ import githubIcon from 'devicon/icons/github/github-original.svg'
 import postmanIcon from 'devicon/icons/postman/postman-original.svg'
 import figmaIcon from 'devicon/icons/figma/figma-original.svg'
 import linuxIcon from 'devicon/icons/linux/linux-original.svg'
+import markdownIcon from 'devicon/icons/markdown/markdown-original.svg'
+import vscodeIcon from 'devicon/icons/vscode/vscode-original.svg'
+import visualstudioIcon from 'devicon/icons/visualstudio/visualstudio-original.svg'
+import archlinuxIcon from 'devicon/icons/archlinux/archlinux-original.svg'
 
 export interface Tech {
   /** Nombre oficial de la tecnología. */
@@ -64,7 +69,7 @@ const renderIconPath =
 export const stackCategories: TechCategory[] = [
   {
     id: 'lenguajes',
-    title: 'Lenguajes de programación',
+    title: 'Lenguajes',
     techs: [
       { name: 'C++', icon: cplusplusIcon },
       { name: 'C#', icon: csharpIcon },
@@ -74,11 +79,12 @@ export const stackCategories: TechCategory[] = [
       { name: 'Java', icon: javaIcon },
       { name: 'Python', icon: pythonIcon },
       { name: 'TypeScript', icon: typescriptIcon },
+      { name: 'Markdown', icon: markdownIcon },
     ],
   },
   {
     id: 'frontend',
-    title: 'Frontend y estilos',
+    title: 'Frontend',
     techs: [
       { name: 'CSS', icon: cssIcon },
       { name: 'Sass', icon: sassIcon },
@@ -89,18 +95,13 @@ export const stackCategories: TechCategory[] = [
     ],
   },
   {
-    id: 'backend',
-    title: 'Backend y frameworks',
+    id: 'backend-datos',
+    title: 'Backend y bases de datos',
     techs: [
       { name: 'ASP.NET Core', icon: dotnetIcon },
+      { name: 'ASP.NET Framework', icon: dotnetIcon },
       { name: 'Flask', icon: flaskIcon },
       { name: 'Spring Boot', icon: springIcon },
-    ],
-  },
-  {
-    id: 'datos',
-    title: 'Bases de datos y servicios de datos',
-    techs: [
       { name: 'Microsoft SQL Server (MSSQL)', icon: mssqlIcon },
       { name: 'MySQL', icon: mysqlIcon },
       { name: 'MongoDB', icon: mongodbIcon },
@@ -110,7 +111,7 @@ export const stackCategories: TechCategory[] = [
   },
   {
     id: 'devops',
-    title: 'DevOps, despliegue y hosting',
+    title: 'DevOps y despliegue',
     techs: [
       { name: 'Docker', icon: dockerIcon },
       { name: 'Netlify', icon: netlifyIcon },
@@ -120,13 +121,16 @@ export const stackCategories: TechCategory[] = [
     ],
   },
   {
-    id: 'herramientas',
-    title: 'Herramientas de desarrollo',
+    id: 'herramientas-entorno',
+    title: 'Herramientas y entorno de desarrollo',
     techs: [
+      { name: 'Visual Studio Code', icon: vscodeIcon },
+      { name: 'Visual Studio', icon: visualstudioIcon },
       { name: 'GitHub', icon: githubIcon },
       { name: 'Postman', icon: postmanIcon },
       { name: 'Figma', icon: figmaIcon },
       { name: 'Linux', icon: linuxIcon },
+      { name: 'Arch Linux', icon: archlinuxIcon },
     ],
   },
 ]
