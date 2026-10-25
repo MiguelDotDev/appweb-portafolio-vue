@@ -53,7 +53,7 @@ const sectionLinks = [
 
       <h1 id="hero-title" class="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl">
         Miguel Angel <br class="hidden sm:block" />
-        <span class="text-teal-400">Nuñez Gomez</span>
+        <span class="text-teal-400">Núñez Gómez</span>
       </h1>
 
       <p class="mt-4 font-mono text-lg text-slate-400">
@@ -65,9 +65,16 @@ const sectionLinks = [
         limpio, rendimiento y buena experiencia de usuario.
       </p>
 
-      <p class="mt-4 font-mono text-md text-slate-400">
-        <span class="text-slate-500">miguel.nunez.dev@gmail.com</span>
-      </p>
+      <div class="mt-5 flex flex-col items-center gap-1 lg:items-start">
+        <p class="font-mono text-xs uppercase tracking-widest text-slate-500">Correo de contacto</p>
+        <a
+          href="mailto:miguel.nunez.dev@gmail.com"
+          class="font-mono text-sm text-slate-300 transition-colors hover:text-teal-300 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400 sm:text-base"
+          aria-label="Enviar correo electrónico a miguel.nunez.dev@gmail.com"
+        >
+          miguel.nunez.dev@gmail.com
+        </a>
+      </div>
 
       <!-- Accesos rápidos -->
       <div class="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
