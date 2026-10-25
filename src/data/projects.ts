@@ -95,5 +95,27 @@ export const projects: Project[] = [
     imageAlt: 'Panel de demostración de FinanceTrack con tarjetas de resumen y gráfico de barras.',
     demoUrl: null,
     repoUrl: "https://github.com/MiguelDotDev/api-marketplace-aspnetcore",
+  },
+  {
+    id: 'api-emotionalio-aspnetframework',
+    title: 'API Backend ASP Net Framework de Emotional.io',
+    summary:
+      'API REST desarrollada con C# y ASP.NET Web API para Emotional.io, una aplicación móvil enfocada en el registro y seguimiento de emociones. Permite gestionar usuarios y notas emocionales, consultar el catálogo de emociones y generar estadísticas de frecuencia por periodos y horas. Utiliza Entity Framework para la persistencia de datos en SQL Server y una arquitectura organizada mediante controladores, servicios y DTO.',
+    tags: [
+      "C#",
+      ".NET Framework 4.8",
+      "ASP.NET Web API 5.3",
+      "Entity Framework 6.5.1",
+      "SQL Server",
+      "AutoMapper 8",
+      "Newtonsoft.Json",
+      "Swashbuckle",
+      "iTextSharp",
+      "NuGet",
+      "IIS Express"
+    ],
+    imageAlt: 'Panel de demostración de FinanceTrack con tarjetas de resumen y gráfico de barras.',
+    demoUrl: null,
+    repoUrl: "https://github.com/MiguelDotDev/api-emotionalio-aspnetframework",
   }
 ]
