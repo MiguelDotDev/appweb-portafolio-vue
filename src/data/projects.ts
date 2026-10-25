@@ -35,6 +35,8 @@ export interface Project {
   images: ProjectImageSpec[]
   /** URL de la demo o `null` si todavía no existe. */
   demoUrl: string | null
+  /** Texto del enlace de demo. Solo se muestra si el proyecto tiene demoUrl. Lo define el propietario del portafolio. */
+  demoLabel: string | null
   /** URL del repositorio o `null` si todavía no existe. */
   repoUrl: string | null
 }
@@ -82,6 +84,7 @@ export const projects: Project[] = [
       },
     ],
     demoUrl: null,
+    demoLabel: null,
     repoUrl: "https://github.com/MiguelDotDev/appweb-sistema-hotel-sgri-aspnetframework",
   },
   {
@@ -110,6 +113,7 @@ export const projects: Project[] = [
       },
     ],
     demoUrl: "https://migueldotdev.github.io/web-usuarios-firebase/",
+    demoLabel: "Ver demo",
     repoUrl: "https://github.com/MiguelDotDev/web-usuarios-firebase",
   },
   {
@@ -144,6 +148,7 @@ export const projects: Project[] = [
       },
     ],
     demoUrl: null,
+    demoLabel: null,
     repoUrl: "https://github.com/MiguelDotDev/api-marketplace-aspnetcore",
   },
   {
@@ -175,6 +180,7 @@ export const projects: Project[] = [
       },
     ],
     demoUrl: null,
+    demoLabel: null,
     repoUrl: "https://github.com/MiguelDotDev/api-emotionalio-aspnetframework",
   }
 ]

@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import SectionHeading from '@/components/SectionHeading.vue'
 import { description, studies } from '@/data/about'
+import { contact } from '@/data/contact'
+
+function getTelHref(phone: string): string {
+  const cleaned = phone.replace(/[\s()-]/g, '')
+  return `tel:${cleaned}`
+}
 </script>
 
 <template>
@@ -22,11 +28,6 @@ import { description, studies } from '@/data/about'
           <div class="mt-5 space-y-4 text-[15px] leading-relaxed text-slate-400">
             <p v-for="(paragraph, index) in description" :key="index">{{ paragraph }}</p>
           </div>
-
-          <!-- Contenido de maqueta: sustituir por la biografía real -->
-          <p class="mt-6 font-mono text-xs leading-relaxed text-slate-400">
-            // texto de ejemplo temporal — sustituir por la biografía real
-          </p>
         </div>
 
         <!-- Subsección: Estudios -->
@@ -94,6 +95,42 @@ import { description, studies } from '@/data/about'
               </div>
             </li>
           </ol>
+        </div>
+      </div>
+
+      <!-- Subsección: Contáctame -->
+      <div id="acerca-contacto" class="scroll-mt-28">
+        <h3 data-aos="fade-up" class="font-display text-xl font-semibold text-white">
+          <span class="mr-2 font-mono text-sm text-teal-400" aria-hidden="true">//</span>Contáctame
+        </h3>
+
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+          <div
+            class="rounded-xl border border-white/10 bg-surface/60 p-4 transition-colors duration-200 hover:border-teal-400/30 sm:p-5"
+            :class="contact.phone ? '' : 'sm:col-span-2'"
+          >
+            <p class="font-mono text-xs font-medium uppercase tracking-wide text-slate-500">Correo</p>
+            <a
+              :href="`mailto:${contact.email}`"
+              class="mt-2 inline-flex font-mono text-sm text-slate-200 transition-colors hover:text-teal-300 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400"
+              :aria-label="`Enviar correo electrónico a ${contact.email}`"
+            >
+              {{ contact.email }}
+            </a>
+          </div>
+
+          <div
+            v-if="contact.phone"
+            class="rounded-xl border border-white/10 bg-surface/60 p-4 transition-colors duration-200 hover:border-teal-400/30 sm:p-5"
+          >
+            <p class="font-mono text-xs font-medium uppercase tracking-wide text-slate-500">Teléfono</p>
+            <a
+              :href="getTelHref(contact.phone)"
+              class="mt-2 inline-flex font-mono text-sm text-slate-200 transition-colors hover:text-teal-300 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400"
+            >
+              {{ contact.phone }}
+            </a>
+          </div>
         </div>
       </div>
     </div>

@@ -27,6 +27,7 @@ const navLinks: NavLink[] = [
     children: [
       { id: 'acerca-descripcion', label: 'Descripción', href: '#acerca-descripcion' },
       { id: 'acerca-estudios', label: 'Estudios', href: '#acerca-estudios' },
+      { id: 'acerca-contacto', label: 'Contáctame', href: '#acerca-contacto' },
     ],
   },
 ]
@@ -88,44 +89,52 @@ function onDocumentClick(event: MouseEvent): void {
   }
 }
 
-/** Resalta el enlace de la sección visible en la franja central de la pantalla. */
-let observer: IntersectionObserver | undefined
+/**
+ * Secciones observadas por el scrollspy, en el orden en que aparecen.
+ * Incluye la sección padre y sus subsecciones (`acerca-contacto` incluida).
+ */
+const scrollSpyIds = navLinks.flatMap((link) =>
+  link.children ? [link.id, ...link.children.map((child) => child.id)] : [link.id],
+)
 
-function onEntries(entries: IntersectionObserverEntry[]): void {
-  const visible = entries.find((entry) => entry.isIntersecting)
-  if (visible && visible.target.id) {
-    activeId.value = visible.target.id
+/**
+ * Resalta el enlace de la última sección cuyo inicio ya cruzó el umbral
+ * superior. Al llegar al final de la página marca el último destino.
+ */
+function updateActiveSection(): void {
+  const threshold = window.innerHeight * 0.35
+  let current = scrollSpyIds[0] ?? 'inicio'
+
+  for (const id of scrollSpyIds) {
+    const section = document.getElementById(id)
+    if (!section) continue
+    if (section.getBoundingClientRect().top <= threshold) current = id
   }
+
+  const atBottom =
+    window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2
+  if (atBottom) {
+    const last = scrollSpyIds[scrollSpyIds.length - 1]
+    if (last) current = last
+  }
+
+  activeId.value = current
 }
 
 onMounted(() => {
   window.addEventListener('keydown', onKeydown)
+  window.addEventListener('scroll', updateActiveSection, { passive: true })
+  window.addEventListener('resize', updateActiveSection)
   document.addEventListener('click', onDocumentClick)
 
-  observer = new IntersectionObserver(onEntries, {
-    rootMargin: '-35% 0px -55% 0px',
-    threshold: 0,
-  })
-  navLinks.forEach((link) => {
-    if (link.children) {
-      link.children.forEach((child) => {
-        const section = document.getElementById(child.id)
-        if (section) observer?.observe(section)
-      })
-      return
-    }
-    const section = document.getElementById(link.id)
-    if (section) observer?.observe(section)
-  })
-  const acercaSection = document.getElementById('acerca')
-  if (acercaSection) observer?.observe(acercaSection)
+  updateActiveSection()
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', onKeydown)
+  window.removeEventListener('scroll', updateActiveSection)
+  window.removeEventListener('resize', updateActiveSection)
   document.removeEventListener('click', onDocumentClick)
-  observer?.disconnect()
-  observer = undefined
 })
 </script>
 

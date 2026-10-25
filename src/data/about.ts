@@ -1,12 +1,5 @@
 /**
  * Contenido de la sección "Acerca de mí".
- *
- * ⚠️ TEXTO PROVISIONAL:
- * `description` es contenido de ejemplo (Lorem ipsum) para maquetar la
- * sección; sustitúyelo por la biografía real.
- *
- * `studies` conserva los nombres oficiales, los periodos y el estado
- * tal como fueron proporcionados. El orden es cronológico ascendente.
  */
 
 export interface Study {
@@ -21,8 +14,8 @@ export interface Study {
 }
 
 export const description: string[] = [
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-  'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+  'Soy estudiante de Ingeniería en Gestión y Desarrollo de Software en la Universidad Tecnológica de Tula-Tepeji, donde antes cursé el Técnico Superior Universitario en Desarrollo de Software Multiplataforma. Durante mi estadía profesional en Grupo Real Hoteles analicé, diseñé y desarrollé un sistema web con ASP.NET MVC y SQL Server para gestionar requisiciones internas. Antes, en mi servicio dual en Access Tecnologías, desarrollé un catálogo web con carrito y notificaciones por correo usando PHP y MySQL.',
+  'Mi trabajo se centra en el backend con C# y ASP.NET, en bases de datos relacionales y en interfaces web con JavaScript, HTML y CSS. Tengo formación en Python, JavaScript y Linux con Cisco Networking Academy, y una evaluación de inglés con resultado C1. Busco una posición de desarrollo donde pueda seguir creciendo en backend y en proyectos web completos.'
 ]
 
 export const studies: Study[] = [

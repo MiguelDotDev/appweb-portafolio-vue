@@ -123,7 +123,7 @@ function onTouchEnd(event: TouchEvent): void {
           :alt="image.alt"
           :loading="index === 0 ? 'eager' : 'lazy'"
           decoding="async"
-          class="h-full w-full object-cover"
+          class="h-full w-full object-contain"
         />
       </div>
     </div>

@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import SectionHeading from '@/components/SectionHeading.vue'
 import ProjectImageCarousel from '@/components/ProjectImageCarousel.vue'
 import ProjectImageModal from '@/components/ProjectImageModal.vue'
-import { projects } from '@/data/projects'
+import { projects, type Project } from '@/data/projects'
 import { getProjectImages } from '@/data/projectImages'
 import githubIcon from 'devicon/icons/github/github-original.svg'
 
@@ -13,17 +13,37 @@ import githubIcon from 'devicon/icons/github/github-original.svg'
  * imágenes se descubren automáticamente en `@/data/projectImages`;
  * aquí solo se define la presentación.
  */
-const projectCards = computed(() =>
-  projects.map((project) => ({
-    project,
-    images: getProjectImages(project.id),
-  })),
-)
 
 /** Una URL solo es válida si es una cadena con contenido real. */
 function hasUrl(value: string | null | undefined): value is string {
   return typeof value === 'string' && value.trim().length > 0
 }
+
+/**
+ * Devuelve el enlace de demo con su texto, o `null` si no debe mostrarse.
+ * Avisa en desarrollo cuando hay demoUrl pero falta demoLabel.
+ */
+function resolveDemo(project: Project): { href: string; label: string } | null {
+  if (!hasUrl(project.demoUrl)) return null
+
+  const label = typeof project.demoLabel === 'string' ? project.demoLabel.trim() : ''
+  if (!label) {
+    if (import.meta.env.DEV) {
+      console.warn(`[ProjectsSection] Falta demoLabel para el proyecto "${project.id}"`)
+    }
+    return null
+  }
+
+  return { href: project.demoUrl, label }
+}
+
+const projectCards = computed(() =>
+  projects.map((project) => ({
+    project,
+    images: getProjectImages(project.id),
+    demo: resolveDemo(project),
+  })),
+)
 
 /** Tarjeta cuya galería está abierta, o `null` si el modal está cerrado. */
 const openCardIndex = ref<number | null>(null)
@@ -119,13 +139,14 @@ function closeGallery(): void {
           <!-- Footer de la tarjeta -->
           <div class="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-4">
             <a
-              v-if="hasUrl(card.project.demoUrl)"
-              :href="card.project.demoUrl"
+              v-if="card.demo"
+              :href="card.demo.href"
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center gap-1.5 text-xs font-semibold text-teal-300 transition-colors hover:text-teal-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400"
+              :aria-label="`${card.demo.label} de ${card.project.title} (se abre en una pestaña nueva)`"
             >
-              Ver demo
+              {{ card.demo.label }}
               <svg viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none" aria-hidden="true">
                 <path
                   d="M7 17 17 7M9 7h8v8"

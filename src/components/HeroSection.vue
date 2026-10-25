@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { socials, cvUrl } from '@/data/socials'
+import { contact } from '@/data/contact'
 
 /**
  * Sección de inicio (hero).
@@ -68,11 +69,11 @@ const sectionLinks = [
       <div class="mt-5 flex flex-col items-center gap-1 lg:items-start">
         <p class="font-mono text-xs uppercase tracking-widest text-slate-500">Correo de contacto</p>
         <a
-          href="mailto:miguel.nunez.dev@gmail.com"
+          :href="`mailto:${contact.email}`"
           class="font-mono text-sm text-slate-300 transition-colors hover:text-teal-300 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400 sm:text-base"
-          aria-label="Enviar correo electrónico a miguel.nunez.dev@gmail.com"
+          :aria-label="`Enviar correo electrónico a ${contact.email}`"
         >
-          miguel.nunez.dev@gmail.com
+          {{ contact.email }}
         </a>
       </div>
 
