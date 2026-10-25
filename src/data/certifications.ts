@@ -1,18 +1,17 @@
 /**
  * Credenciales de la sección "Certificaciones y Formación".
  *
- * ⚠️ CONTENIDO DE DEMOSTRACIÓN:
- * Las cuatro credenciales siguientes son ejemplos ficticios creados para
- * maquetar y probar la sección (filtros, modal y descarga). NO son
- * certificaciones oficiales reales ni pertenecen al usuario. Sustitúyelas
- * por credenciales reales editando únicamente este archivo.
+ * Credenciales reales con su PDF de evidencia en `public/evidencias/` y,
+ * opcionalmente, una URL de verificación oficial.
  *
- * Para añadir, editar o eliminar una credencial:
+ * Guía para añadir una credencial:
  * 1. Copia el PDF de evidencia en `public/evidencias/`.
  * 2. Añade un objeto a `certifications` con:
  *    - `id`: identificador único (se usa como `key` y para el nombre de archivo).
- *    - `nombre`, `emisor`, `fecha`, `resultado` y `categoria`.
+ *    - `nombre`, `emisor`, `categoria`, `fecha`, `resultado`, `pdfUrl` y `verifyUrl`.
+ *    - `fecha`: seguir el formato "Mes día, año" (mes en español con primera letra mayúscula, día sin cero a la izquierda, año de cuatro dígitos). Ejemplo: "Noviembre 20, 2026".
  *    - `pdfUrl`: ruta pública del PDF, p. ej. `/evidencias/mi-curso.pdf`.
+ *    - `verifyUrl`: URL de la página oficial de verificación o `null` si no existe.
  * 3. No hace falta tocar ningún componente visual.
  */
 
@@ -28,7 +27,7 @@ export interface Certification {
   emisor: string
   /** Categoría usada por la barra de filtros. */
   categoria: CertificationCategory
-  /** Fecha de obtención o finalización (texto libre, p. ej. "2024-03"). */
+  /** Fecha de obtención o finalización (formato "Mes día, año"). */
   fecha: string
   /**
    * Puntuación, nivel, calificación o resultado acreditado.
@@ -37,6 +36,8 @@ export interface Certification {
   resultado: string | null
   /** Ruta pública del PDF de evidencia (relativa a la raíz del sitio). */
   pdfUrl: string
+  /** URL de la página oficial de verificación del certificado. `null` si no existe. */
+  verifyUrl: string | null
 }
 
 /** Opción de la barra de filtros. */
@@ -79,6 +80,11 @@ export function hasEvidence(pdfUrl: string | null | undefined): pdfUrl is string
   return typeof pdfUrl === 'string' && pdfUrl.trim().length > 0
 }
 
+export function hasVerifyUrl(url: string | null | undefined): url is string {
+  if (typeof url !== 'string') return false
+  return url.trim().startsWith('https://')
+}
+
 /** Colección de credenciales */
 export const certifications: Certification[] = [
   {
@@ -86,27 +92,30 @@ export const certifications: Certification[] = [
     nombre: 'Fundamentos de Python 1',
     emisor: 'Cisco Networking Academy',
     categoria: 'certificaciones',
-    fecha: '2025-01-01',
+    fecha: 'Enero 1, 2025',
     resultado: 'Aprobado',
     pdfUrl: `${evidenciasBase}fundamentos-python-1-MiguelNunez.pdf`,
+    verifyUrl: 'https://www.netacad.com/recognitions/verify/c544bef3-50b9-482b-a33b-479b7af32c7f',
   },
   {
     id: 'fundamentos-python-2',
     nombre: 'Fundamentos de Python 2',
     emisor: 'Cisco Networking Academy',
     categoria: 'certificaciones',
-    fecha: '2026-05-08',
+    fecha: 'Mayo 8, 2026',
     resultado: 'Aprobado',
     pdfUrl: `${evidenciasBase}fundamentos-python-2-MiguelNunez.pdf`,
+    verifyUrl: 'https://www.netacad.com/recognitions/verify/ef108792-6587-469b-ba18-eda18a8493af',
   },
   {
     id: 'oxford-placement-test',
     nombre: 'Oxford Placement Test',
     emisor: 'Oxford University Press',
     categoria: 'ingles',
-    fecha: '2026-05-08',
+    fecha: 'Mayo 8, 2026',
     resultado: 'C1 — 84 puntos',
     pdfUrl: `${evidenciasBase}oxford-placement-test-miguel-nunez.pdf`,
+    verifyUrl: null,
   },
   {
     id: 'javascript-essentials-1',
@@ -116,6 +125,7 @@ export const certifications: Certification[] = [
     fecha: 'Mayo 29, 2026',
     resultado: 'Aprobado',
     pdfUrl: `${evidenciasBase}javascript-essentials-1-miguel-nunez.pdf`,
+    verifyUrl: 'https://www.netacad.com/recognitions/verify/aad7f8a6-1eeb-42d8-8dc5-869c25f43bc2',
   },
   {
     id: 'partner-ndg-linux-essentials',
@@ -125,6 +135,7 @@ export const certifications: Certification[] = [
     fecha: 'Agosto 14, 2026',
     resultado: 'Aprobado',
     pdfUrl: `${evidenciasBase}partner-ndg-linux-essentials-miguel-nunez.pdf`,
+    verifyUrl: null,
   },
   {
     id: 'iot-transformacion-digital',
@@ -134,5 +145,6 @@ export const certifications: Certification[] = [
     fecha: 'Noviembre 20, 2024',
     resultado: 'Aprobado',
     pdfUrl: `${evidenciasBase}iot-transformacion-digital-miguel-nunez.pdf`,
+    verifyUrl: 'https://www.netacad.com/recognitions/verify/0983bffc-63f4-4f56-ad82-b94fee18fc48',
   },
 ]

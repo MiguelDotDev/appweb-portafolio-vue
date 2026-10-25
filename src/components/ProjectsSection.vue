@@ -16,12 +16,7 @@ import githubIcon from 'devicon/icons/github/github-original.svg'
 const projectCards = computed(() =>
   projects.map((project) => ({
     project,
-    images: getProjectImages(project.id).map((image) => ({
-      ...image,
-      // El texto alternativo base del proyecto se completa con la etiqueta
-      // de cada imagen, de modo que nunca se repite un texto genérico.
-      alt: `${image.label} — ${project.imageAlt}`,
-    })),
+    images: getProjectImages(project.id),
   })),
 )
 

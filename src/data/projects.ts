@@ -3,10 +3,10 @@
  *
  * Imágenes:
  * - Cada proyecto tiene su propia carpeta de imágenes en
- *   `src/assets/img/projects/<id>/` (por ejemplo `petcare/`).
+ *   `src/assets/img/projects/<id>/`.
  * - Las imágenes se descubren automáticamente (ver `@/data/projectImages`),
- *   así que para añadir una captura solo hay que copiar el archivo a la
- *   carpeta del proyecto. No se importan aquí para evitar duplicados.
+ *   emparejando por carpeta y nombre de archivo con la lista `images`.
+ * - El orden y los textos alternativos vienen de este archivo (`images`).
  *
  * Enlaces:
  * - `demoUrl` / `repoUrl` con valor `null` significa "sin enlace real todavía".
@@ -14,6 +14,13 @@
  *   identificando que el enlace está sin configurar.
  * - Nunca se inventan URLs: rellena estos campos con destinos reales.
  */
+
+export interface ProjectImageSpec {
+  /** Nombre del archivo dentro de src/assets/img/projects/<id>/ */
+  file: string
+  /** Texto alternativo: describe lo que se ve, sin prefijos ni el nombre del proyecto. */
+  alt: string
+}
 
 export interface Project {
   /** Identificador estable; debe coincidir con la carpeta de imágenes. */
@@ -24,8 +31,8 @@ export interface Project {
   summary: string
   /** Tecnologías mostradas como etiquetas. */
   tags: string[]
-  /** Texto alternativo base de las imágenes del proyecto. */
-  imageAlt: string
+  /** Imágenes del proyecto, en el orden en que se muestran en el carrusel. */
+  images: ProjectImageSpec[]
   /** URL de la demo o `null` si todavía no existe. */
   demoUrl: string | null
   /** URL del repositorio o `null` si todavía no existe. */
@@ -52,7 +59,28 @@ export const projects: Project[] = [
       "Sass/SCSS",
       "Razor"
     ],
-    imageAlt: 'Vista de demostración de PetCare con fichas de mascotas y listado de consultas.',
+    images: [
+      {
+        file: '1.jpeg',
+        alt: 'Pantalla de inicio de sesión con campos de correo y contraseña, sobre una fotografía de un complejo hotelero',
+      },
+      {
+        file: '2.jpeg',
+        alt: 'Pantalla de centros de costos, con una tarjeta por centro y botones para configurar, eliminar y añadir uno nuevo',
+      },
+      {
+        file: '3.jpeg',
+        alt: 'Listado de requisiciones del usuario, con buscador por folio y estado «Pendiente por autorizar»',
+      },
+      {
+        file: '4.jpeg',
+        alt: 'Panel principal con accesos a nueva requisición, catálogo y perfil',
+      },
+      {
+        file: '5.jpeg',
+        alt: 'Pantalla de perfil con los datos del empleado y las opciones de cambiar contraseña o cerrar sesión',
+      },
+    ],
     demoUrl: null,
     repoUrl: "https://github.com/MiguelDotDev/appweb-sistema-hotel-sgri-aspnetframework",
   },
@@ -71,7 +99,16 @@ export const projects: Project[] = [
       "JSON",
       "Web Development"
     ],
-    imageAlt: 'Panel de demostración de FinanceTrack con tarjetas de resumen y gráfico de barras.',
+    images: [
+      {
+        file: '1.jpg',
+        alt: 'Formulario de datos personales del registro de usuarios, con los campos todavía vacíos',
+      },
+      {
+        file: '2.jpg',
+        alt: 'Formulario de dirección y tabla de registros, sin filas todavía, con columnas de nombre, domicilio y teléfonos',
+      },
+    ],
     demoUrl: "https://migueldotdev.github.io/web-usuarios-firebase/",
     repoUrl: "https://github.com/MiguelDotDev/web-usuarios-firebase",
   },
@@ -92,7 +129,20 @@ export const projects: Project[] = [
       "MVC",
       "Inyección de dependencias"
     ],
-    imageAlt: 'Panel de demostración de FinanceTrack con tarjetas de resumen y gráfico de barras.',
+    images: [
+      {
+        file: '1.jpg',
+        alt: 'Documentación Swagger de la API con endpoints de autenticación, categorías y chats',
+      },
+      {
+        file: '2.jpg',
+        alt: 'Documentación Swagger de los endpoints de productos, con la lista de esquemas de datos colapsada',
+      },
+      {
+        file: '3.jpg',
+        alt: 'Esquemas DTO de la API, como LoginDTO y RegisterDTO, con los campos obligatorios marcados',
+      },
+    ],
     demoUrl: null,
     repoUrl: "https://github.com/MiguelDotDev/api-marketplace-aspnetcore",
   },
@@ -114,7 +164,16 @@ export const projects: Project[] = [
       "NuGet",
       "IIS Express"
     ],
-    imageAlt: 'Panel de demostración de FinanceTrack con tarjetas de resumen y gráfico de barras.',
+    images: [
+      {
+        file: '1.png',
+        alt: 'Documentación Swagger de la API con endpoints de emociones y notas',
+      },
+      {
+        file: '2.png',
+        alt: 'Documentación Swagger con endpoints de notas y de usuarios, como registro, ingreso y consulta de apodo',
+      },
+    ],
     demoUrl: null,
     repoUrl: "https://github.com/MiguelDotDev/api-emotionalio-aspnetframework",
   }

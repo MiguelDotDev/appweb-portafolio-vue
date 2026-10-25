@@ -3,8 +3,9 @@ import { onMounted } from 'vue'
 import AOS from 'aos'
 import TheNavbar from '@/components/TheNavbar.vue'
 import HeroSection from '@/components/HeroSection.vue'
-import StackSection from '@/components/StackSection.vue'
 import ProjectsSection from '@/components/ProjectsSection.vue'
+import ExperienceSection from '@/components/ExperienceSection.vue'
+import StackSection from '@/components/StackSection.vue'
 import CertificationsSection from '@/components/CertificationsSection.vue'
 import AboutSection from '@/components/AboutSection.vue'
 import TheFooter from '@/components/TheFooter.vue'
@@ -52,8 +53,9 @@ onMounted(() => {
 
     <main id="contenido" tabindex="-1" class="relative z-10">
       <HeroSection />
-      <StackSection />
       <ProjectsSection />
+      <ExperienceSection />
+      <StackSection />
       <CertificationsSection />
       <AboutSection />
     </main>

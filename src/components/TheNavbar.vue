@@ -17,8 +17,9 @@ interface NavChild {
 
 const navLinks: NavLink[] = [
   { id: 'inicio', label: 'Inicio' },
-  { id: 'stack', label: 'Stack tecnológico' },
   { id: 'proyectos', label: 'Proyectos' },
+  { id: 'experiencia', label: 'Experiencia' },
+  { id: 'stack', label: 'Stack tecnológico' },
   { id: 'certificaciones', label: 'Certificaciones' },
   {
     id: 'acerca',
@@ -26,7 +27,6 @@ const navLinks: NavLink[] = [
     children: [
       { id: 'acerca-descripcion', label: 'Descripción', href: '#acerca-descripcion' },
       { id: 'acerca-estudios', label: 'Estudios', href: '#acerca-estudios' },
-      { id: 'acerca-experiencia', label: 'Experiencia', href: '#acerca-experiencia' },
     ],
   },
 ]

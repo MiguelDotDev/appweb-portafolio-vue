@@ -2,17 +2,15 @@
  * Descubrimiento automático de las imágenes de los proyectos.
  *
  * Las imágenes viven en `src/assets/img/projects/<proyecto>/` y se detectan
- * con `import.meta.glob` de Vite, de modo que basta con copiar un archivo
- * nuevo dentro de la carpeta del proyecto para que aparezca en su carrusel
- * (sin tocar el componente ni ninguna lista manual).
+ * con `import.meta.glob` de Vite.
+ *
+ * El orden y los textos alternativos vienen de `@/data/projects` (`images`),
+ * no del nombre de archivo. Solo se muestran las entradas definidas en
+ * `projects.ts` que tengan un archivo correspondiente en el glob.
+ * Los archivos que existan en la carpeta pero no estén definidos en
+ * `projects.ts` se ignoran.
  *
  * Formatos admitidos: jpg, jpeg, png, webp, avif y svg.
- * Orden: el nombre del archivo, con numeración inicial recommended
- * (`01-portada.webp`, `02-detalle.png`, …) para que la secuencia sea
- * predecible. Sin numeración, el orden es alfabético.
- *
- * Nota: Vite resuelve el glob al arrancar el servidor o al compilar, por lo
- * que puede ser necesario reiniciar `pnpm dev` para detectar archivos nuevos.
  */
 
 /**
@@ -27,12 +25,14 @@ export interface DiscoveredImage {
   src: string
   /** Nombre del archivo (por ejemplo `01-portada.svg`). */
   file: string
-  /** Etiqueta legible derivada del nombre (`portada` → `Portada`). */
-  label: string
 }
 
 /** Imagen lista para pintarse en el carrusel. */
-export interface ProjectImage extends DiscoveredImage {
+export interface ProjectImage {
+  /** Ruta pública del recurso ya procesado por Vite. */
+  src: string
+  /** Nombre del archivo. */
+  file: string
   /** Texto alternativo descriptivo. */
   alt: string
 }
@@ -54,15 +54,6 @@ const imageModules = import.meta.glob<string>(
   },
 )
 
-/** Convierte `02-mis-pantallas` en `Mis pantallas`. */
-function humanize(fileName: string): string {
-  const withoutExtension = fileName.replace(/\.[^.]+$/, '')
-  const withoutPrefix = withoutExtension.replace(/^\d+[-_.]?/, '')
-  const words = withoutPrefix.replace(/[-_]+/g, ' ').trim()
-  if (!words) return 'Imagen del proyecto'
-  return words.charAt(0).toUpperCase() + words.slice(1)
-}
-
 /** Extrae el nombre de la carpeta del proyecto a partir de la ruta del glob. */
 function extractProjectId(path: string): string {
   const parts = path.split('/')
@@ -70,10 +61,10 @@ function extractProjectId(path: string): string {
 }
 
 /**
- * Agrupa las imágenes por proyecto y las ordena de forma determinista.
+ * Mapa con las URLs resueltas por proyecto y archivo.
  * El `Map` mantiene el orden de aparición y evita duplicados por ruta.
  */
-const imagesByProject = new Map<string, DiscoveredImage[]>()
+const urlsByProjectAndFile = new Map<string, Map<string, string>>()
 
 for (const [path, src] of Object.entries(imageModules)) {
   if (typeof src !== 'string' || !src) continue
@@ -87,23 +78,35 @@ for (const [path, src] of Object.entries(imageModules)) {
   const extension = file.split('.').pop()?.toLowerCase() ?? ''
   if (!IMAGE_EXTENSIONS.includes(extension as (typeof IMAGE_EXTENSIONS)[number])) continue
 
-  const list = imagesByProject.get(projectId) ?? []
-  // Deduplicación por ruta: un mismo archivo nunca aparece dos veces.
-  if (list.some((image) => image.file === file)) continue
+  const filesMap = urlsByProjectAndFile.get(projectId) ?? new Map<string, string>()
+  if (filesMap.has(file)) continue
 
-  list.push({ src, file, label: humanize(file) })
-  imagesByProject.set(projectId, list)
+  filesMap.set(file, src)
+  urlsByProjectAndFile.set(projectId, filesMap)
 }
 
-// Orden determinista: primero por el prefijo numérico y luego alfabéticamente.
-for (const list of imagesByProject.values()) {
-  list.sort((a, b) => a.file.localeCompare(b.file, 'es', { numeric: true, sensitivity: 'base' }))
-}
+import { projects } from './projects'
 
 /**
- * Devuelve las imágenes de un proyecto concreto.
- * Cada proyecto solo recibe los archivos de su propia carpeta.
+ * Devuelve las imágenes de un proyecto concreto según la lista `images` de projects.ts.
+ * El orden y los textos alternativos vienen de projects.ts; solo se muestran las entradas
+ * que tengan un archivo correspondiente en el glob. Si falta un archivo, se registra un aviso.
  */
-export function getProjectImages(projectId: string): DiscoveredImage[] {
-  return imagesByProject.get(projectId) ?? []
+export function getProjectImages(projectId: string): ProjectImage[] {
+  const project = projects.find((p) => p.id === projectId)
+  if (!project) return []
+
+  const filesMap = urlsByProjectAndFile.get(projectId)
+  const result: ProjectImage[] = []
+
+  for (const imageSpec of project.images) {
+    const src = filesMap?.get(imageSpec.file)
+    if (!src) {
+      console.warn(`[projectImages] Falta archivo para el proyecto "${projectId}": ${imageSpec.file}`)
+      continue
+    }
+    result.push({ src, file: imageSpec.file, alt: imageSpec.alt })
+  }
+
+  return result
 }

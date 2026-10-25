@@ -172,7 +172,7 @@ function onTouchEnd(event: TouchEvent): void {
           type="button"
           class="h-1.5 rounded-full transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400"
           :class="index === current ? 'w-5 bg-teal-400' : 'w-1.5 bg-white/40 hover:bg-white/70'"
-          :aria-label="`Ir a la imagen ${index + 1} de ${total}: ${image.label}`"
+          :aria-label="`Ver imagen ${index + 1} de ${total}`"
           :aria-current="index === current ? 'true' : undefined"
           @click="goTo(index)"
         ></button>
@@ -190,7 +190,7 @@ function onTouchEnd(event: TouchEvent): void {
 
     <!-- Aviso para lectores de pantalla -->
     <p class="sr-only" aria-live="polite">
-      {{ currentImage ? `Imagen ${current + 1} de ${total}: ${currentImage.label}` : '' }}
+      {{ currentImage ? `Imagen ${current + 1} de ${total}. ${currentImage.alt}` : '' }}
     </p>
   </div>
 </template>
