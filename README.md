@@ -1,138 +1,99 @@
-# Portafolio Web Vue + Vite
-Este es un proyecto web estatico desarrollado con Vue y Vite, es mi portafolio web (Miguel Angel Núñez Gómez)
+# Portafolio web de Miguel Angel Núñez Gómez
 
-## Secciones
+Portafolio de desarrollador fullstack construido con Vue 3 y Vite.
 
-- **Inicio** — presentación, accesos a proyectos y "Acerca de mí", redes y descarga del CV.
-- **Stack tecnológico** — todas las tecnologías organizadas en categorías.
-- **Proyectos** — cuatro tarjetas en cuadrícula de dos columnas, cada una con su propio carrusel de imágenes, etiquetas y enlace a GitHub.
-- **Certificaciones y Formación** — credenciales filtrables (Todos / Certificaciones / Cursos / Inglés) con modal de evidencia PDF y descarga.
-- **Acerca de mí** — subsecciones *Descripción* (texto provisional) y *Estudios* (línea de tiempo).
+## Enlaces
 
-## Estructura
+- [Sitio en vivo](https://migueldotdev.netlify.app)
+- [GitHub](https://github.com/MiguelDotDev)
+- [LinkedIn](https://linkedin.com/in/miguel-angel-núñez-gómez-2a46a4431)
 
+## Qué muestra el sitio
+
+- **Inicio**: presentación, correo de contacto, accesos a Proyectos y Acerca de mí, redes sociales y descarga del CV.
+- **Proyectos**: cuatro proyectos con carrusel de imágenes, resumen, etiquetas tecnológicas y enlaces a repositorio o demo.
+- **Experiencia**: dos experiencias con periodo, actividades, tecnologías y enlace al proyecto en GitHub.
+- **Stack tecnológico**: 36 tecnologías agrupadas en cinco categorías.
+- **Certificaciones y Formación**: credenciales filtrables por categoría, con visor de evidencia PDF y, cuando existe, enlace de verificación.
+- **Acerca de mí**: descripción, estudios y datos de contacto.
+
+## Decisiones técnicas
+
+- El contenido se separa de la presentación: los textos, enlaces e imágenes se declaran en `src/data/` y los componentes solo los muestran.
+- El carrusel de proyectos admite flechas, teclado (←/→) y gestos táctiles; anuncia la imagen actual mediante una región `aria-live`. Los modales atrapan el foco, se cierran con Escape y restauran el foco al salir.
+- Las animaciones de AOS se desactivan cuando el sistema pide movimiento reducido, y el contenido permanece visible si AOS no se inicializa.
+- `pnpm build` ejecuta la verificación de tipos (`vue-tsc --build`) y el empaquetado de Vite en paralelo; si la verificación falla, el comando termina con error.
+- El sitio es estático: no hay backend ni llamadas a una API propia. Vite genera HTML, CSS, JavaScript y recursos en `dist/`.
+
+## Stack tecnológico
+
+- Vue `^3.5.40`
+- Vue Router `^5.2.0`
+- Vite `^8.1.5`
+- TypeScript `~6.0.0`
+- Tailwind CSS `^4.3.3` y `@tailwindcss/vite` `^4.3.3`
+- AOS `3.0.0-beta.6`
+- Devicon `^2.17.0`
+- vue-tsc `^3.3.7`
+
+## Ejecutar en local
+
+Requiere Node.js `^22.18.0 || >=24.12.0`, según el campo `engines`, y pnpm (lockfile 9.0).
+
+| Comando | Descripción |
+| --- | --- |
+| `pnpm install` | Instala las dependencias declaradas en `package.json`. |
+| `pnpm dev` | Inicia el servidor de desarrollo de Vite. |
+| `pnpm build` | Verifica los tipos y genera la compilación en `dist/`. |
+| `pnpm preview` | Sirve localmente el contenido de `dist/`. |
+
+## Estructura del proyecto
+
+```text
+.
+├── docs/
+│   └── contenido.md
+├── public/                 # archivos estáticos (favicon, CV, evidencias)
+├── src/
+│   ├── assets/             # imágenes del sitio
+│   ├── components/         # secciones, tarjetas y modales
+│   ├── composables/        # lógica reutilizable del carrusel
+│   ├── data/               # contenido editable
+│   ├── router/             # configuración de vue-router
+│   ├── App.vue
+│   └── main.ts
+├── .env
+├── .gitignore
+├── index.html
+├── package.json
+├── pnpm-lock.yaml
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+└── vite.config.ts
 ```
-src/
-├── assets/img/projects/   # Imágenes de cada proyecto, en una carpeta por proyecto
-│   ├── petcare/           #   01-portada.svg, 02-fichas.svg, …
-│   ├── financetrack/
-│   ├── devtasks/
-│   └── datavision/
-├── components/            # Secciones y pie: TheNavbar, HeroSection, StackSection…
-│   └── ProjectImageCarousel.vue  # Carrusel reutilizable (una instancia por tarjeta)
-├── composables/           # useImageCarousel: estado y navegación del carrusel
-├── data/                  # Contenido editable separado de la presentación
-│   ├── stack.ts           #   categorías y tecnologías
-│   ├── projects.ts        #   proyectos (título, descripción, tags, enlaces)
-│   ├── projectImages.ts   #   descubrimiento automático de las imágenes por carpeta
-│   ├── certifications.ts  #   credenciales, filtros y categorías
-│   ├── about.ts           #   descripción y estudios
-│   └── socials.ts         #   redes sociales y ruta del CV
-├── App.vue                # Composición, paleta (@theme) y arranque de AOS
-└── main.ts
-```
 
-## Personalizar el contenido
+## Editar el contenido
 
-- **Añadir o quitar proyectos:** editar `src/data/projects.ts`. Si `demoUrl` o `repoUrl` son `null`, la tarjeta no muestra enlace clicable.
-- **Añadir tecnologías:** editar `src/data/stack.ts` (iconos de la colección [Devicon](https://github.com/devicons/devicon)).
-- **Estudios y descripción:** editar `src/data/about.ts`.
-- **Certificaciones y formación:** editar `src/data/certifications.ts`.
+- `src/data/projects.ts` — proyectos, etiquetas, enlaces e imágenes.
+- `src/data/certifications.ts` — credenciales, fechas y evidencias.
+- `src/data/about.ts` — descripción y estudios.
+- `src/data/experience.ts` — experiencia profesional.
+- `src/data/stack.ts` — categorías y tecnologías.
+- `src/data/socials.ts` — perfiles y ruta del CV.
+- `src/data/contact.ts` — correo y teléfono.
 
-### Imágenes de los proyectos (carrusel)
+Las imágenes de cada proyecto se guardan en `src/assets/img/projects/<id>/` y se declaran en `projects.ts`.
+La guía con campos y entradas mínimas está en [docs/contenido.md](docs/contenido.md).
 
-Cada proyecto tiene su propia carpeta en `src/assets/img/projects/<id>/`, donde
-`<id>` es el campo `id` del proyecto en `src/data/projects.ts`:
+## Despliegue
 
-```
-src/assets/img/projects/petcare/
-├── 01-portada.svg
-├── 02-fichas.svg
-└── 03-vista-movil.png
-```
+El sitio es estático. `pnpm build` genera la carpeta `dist/`, y esa carpeta es la que se sirve en el alojamiento. La variable `VITE_SITE_URL` de `.env` define la URL pública usada por `index.html` en el enlace canónico y en las etiquetas Open Graph y Twitter. Si cambia el dominio, actualiza ese valor y vuelve a compilar.
 
-- **Añadir una imagen es copiar el archivo en la carpeta del proyecto.** No hay
-  que tocar ningún componente ni ninguna lista: `src/data/projectImages.ts`
-  descubre los archivos con `import.meta.glob` de Vite y agrupa las imágenes
-  por el nombre de la carpeta, de modo que cada carrusel solo recibe las suyas.
-- **Formatos admitidos:** `jpg`, `jpeg`, `png`, `webp`, `avif` y `svg`.
-- **Orden:** por nombre de archivo. Se recomienda numerar con dos dígitos
-  (`01-portada.webp`, `02-detalle.png`, `03-resultados.webp`) para que la
-  secuencia sea predecible; sin numeración, el orden es alfabético.
-- **Texto alternativo:** se compone automáticamente con la etiqueta del
-  archivo (`02-fichas` → "Fichas") y el `imageAlt` del proyecto, de forma que
-  cada imagen tiene un `alt` descriptivo y distinto.
-- **Al arrancar o recompilar**, Vite vuelve a resolver el glob. Si añades
-  archivos mientras el servidor está en marcha, puede ser necesario
-  reiniciar `pnpm dev` para que los detecte.
-- Un proyecto con **una sola imagen** muestra esa imagen sin controles; un
-  proyecto **sin imágenes** muestra un estado de respaldo discreto.
+## Licencia
 
-Las capturas de demostración actuales (las de `02-*`, `03-*` y `04-*`) se
-pueden regenerar con `node scripts/generar-imagenes-demo.mjs`. Las imágenes
-`01-portada.*` son las originales del portafolio y no se tocan.
+Todos los derechos reservados.
 
-### Añadir un proyecto nuevo
+## Contacto
 
-1. Crea la carpeta de imágenes `src/assets/img/projects/<id>/` y copia dentro
-   las capturas del proyecto (empezando por `01-portada.*`).
-2. Añade el objeto al array `projects` de `src/data/projects.ts`:
-
-   ```ts
-   {
-     id: 'mi-proyecto',                   // único: debe coincidir con la carpeta
-     title: 'Mi proyecto',
-     summary: 'Descripción breve del proyecto.',
-     tags: ['Vue', 'TypeScript'],
-     imageAlt: 'Vista de demostración de Mi proyecto con su panel principal.',
-     demoUrl: null,                       // o la URL real de la demo
-     repoUrl: null,                       // o la URL real del repositorio
-   }
-   ```
-
-   Si `repoUrl` tiene valor, el botón **"Ver en GitHub"** del pie de la tarjeta
-   se convierte en un enlace que abre el repositorio en una pestaña nueva. Si
-   es `null`, el botón queda deshabilitado en lugar de apuntar a un destino
-   inexistente.
-
-> Las tarjetas se colocan solas en la cuadrícula: una columna en pantallas
-> pequeñas y dos columnas a partir de `md` (768px).
-
-### Añadir una credencial y su evidencia
-
-1. Copia el PDF en `public/evidencias/` (por ejemplo `public/evidencias/mi-curso.pdf`).
-2. Añade un objeto a `certifications` en `src/data/certifications.ts`:
-
-   ```ts
-   {
-     id: 'mi-curso',                    // único: identifica la tarjeta y el archivo de descarga
-     nombre: 'Mi curso',
-     emisor: 'Institución que lo expide',
-     categoria: 'cursos',               // 'certificaciones' | 'cursos' | 'ingles'
-     fecha: '2025-01',
-     resultado: 'Curso completado',     // o `null` → la tarjeta muestra "No aplica"
-     pdfUrl: '/evidencias/mi-curso.pdf',
-   }
-   ```
-
-   > Las rutas se construyen con `evidenciasBase`, que respeta el `base` de Vite.
-
-3. Si todavía no tienes el PDF, deja `pdfUrl` vacío (`''`): la tarjeta mostrará
-   *"evidencia pendiente de cargar"* en lugar de un botón roto. No uses el mismo
-   PDF de ejemplo para varias credenciales.
-
-Las credenciales incluidas actualmente (`demo-cloud`, `demo-web`, `demo-english`,
-`demo-python`) y sus PDFs son **datos de demostración**: no son certificaciones
-auténticas. Los cuatro PDFs de prueba se generaron con
-`node scripts/generar-evidencias-demo.mjs`.
-
-- La animación de scroll usa **AOS** y se inicializa una sola vez en `src/App.vue`; respeta `prefers-reduced-motion`.
-
-## Desarrollo
-
-```sh
-pnpm install
-pnpm dev       # servidor de desarrollo
-pnpm build     # type-check (vue-tsc) + build de producción
-pnpm preview   # previsualizar el build
-```
+Correo: [miguel.nunez.dev@gmail.com](mailto:miguel.nunez.dev@gmail.com)
