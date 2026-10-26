@@ -121,7 +121,7 @@ function onTouchEnd(event: TouchEvent): void {
         <img
           :src="image.src"
           :alt="image.alt"
-          :loading="index === 0 ? 'eager' : 'lazy'"
+          loading="lazy"
           decoding="async"
           class="h-full w-full object-contain"
         />

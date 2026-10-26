@@ -44,6 +44,8 @@ import { stackCategories } from '@/data/stack'
                 v-if="tech.icon"
                 :src="tech.icon"
                 alt=""
+                loading="lazy"
+                decoding="async"
                 class="h-full w-full object-contain"
               />
               <svg v-else viewBox="0 0 24 24" class="h-full w-full">

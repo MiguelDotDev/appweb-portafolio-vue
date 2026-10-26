@@ -25,7 +25,7 @@ Entrada mínima:
   title: 'Nombre del proyecto',
   summary: 'Descripción breve del proyecto.',
   tags: ['TypeScript', 'Vue'],
-  images: [{ file: '1.jpg', alt: 'Descripción de la captura' }],
+  images: [{ file: '1.webp', alt: 'Descripción de la captura' }],
   demoUrl: null,
   demoLabel: null,
   repoUrl: null,
@@ -34,7 +34,7 @@ Entrada mínima:
 
 ### Imágenes de proyectos
 
-Crea una carpeta en `src/assets/img/projects/` con el mismo valor de `id` y añade los archivos con extensión `jpg`, `jpeg`, `png`, `webp`, `avif` o `svg`.
+Crea una carpeta en `src/assets/img/projects/` con el mismo valor de `id` y añade los archivos WebP.
 
 Declara cada archivo en `images`, en el orden en que debe aparecer. El campo `file` debe coincidir con el nombre del archivo y `alt` describe su contenido.
 
@@ -49,7 +49,7 @@ Campos de `Certification`:
 - `id` (`string`): identificador único.
 - `nombre` (`string`): nombre de la credencial.
 - `emisor` (`string`): institución, plataforma u organismo que la expide.
-- `categoria` (`'certificaciones' | 'ingles'`): categoría usada por los filtros.
+- `categoria` (`'cursos' | 'ingles'`): categoría usada por los filtros.
 - `fecha` (`string`): fecha con el formato `"Mes día, año"`.
 - `resultado` (`string | null`): calificación o nivel; `null` muestra «No aplica».
 - `pdfUrl` (`string`): ruta pública del PDF de evidencia.
@@ -62,7 +62,7 @@ Entrada mínima:
   id: 'mi-credencial',
   nombre: 'Nombre de la credencial',
   emisor: 'Institución que la expide',
-  categoria: 'certificaciones',
+  categoria: 'cursos',
   fecha: 'Enero 1, 2026',
   resultado: 'Aprobado',
   pdfUrl: `${evidenciasBase}mi-credencial.pdf`,
@@ -70,7 +70,7 @@ Entrada mínima:
 }
 ```
 
-Coloca el PDF en `public/evidencias/`. Los filtros visibles se definen en `certificationFilters` y los nombres de categoría en `categoryLabels`; si añades una categoría, actualiza también `CertificationCategory`.
+Coloca el PDF en `public/evidencias/`. Los filtros visibles actuales son Todos, Inglés y Cursos; se definen en `certificationFilters`. Los nombres de categoría se definen en `categoryLabels`; si añades una categoría, actualiza también `CertificationCategory`.
 
 ## src/data/about.ts
 
@@ -159,7 +159,7 @@ Define el correo y el teléfono usados en Inicio y en Contáctame.
 
 Campos de `ContactInfo`: `email` (`string`) y `phone` (`string | null`).
 
-El correo se muestra en Inicio y en Contáctame. El teléfono se muestra en Contáctame solo cuando tiene valor; el enlace `tel:` conserva el signo `+` y elimina espacios, guiones y paréntesis.
+El correo se muestra en Inicio y en Contáctame. El teléfono se muestra en Contáctame solo cuando tiene valor; al seleccionarlo abre un chat de WhatsApp con el número en formato internacional.
 
 Entrada mínima:
 

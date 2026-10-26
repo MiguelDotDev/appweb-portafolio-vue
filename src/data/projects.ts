@@ -63,23 +63,23 @@ export const projects: Project[] = [
     ],
     images: [
       {
-        file: '1.jpeg',
+        file: '1.webp',
         alt: 'Pantalla de inicio de sesión con campos de correo y contraseña, sobre una fotografía de un complejo hotelero',
       },
       {
-        file: '2.jpeg',
+        file: '2.webp',
         alt: 'Pantalla de centros de costos, con una tarjeta por centro y botones para configurar, eliminar y añadir uno nuevo',
       },
       {
-        file: '3.jpeg',
+        file: '3.webp',
         alt: 'Listado de requisiciones del usuario, con buscador por folio y estado «Pendiente por autorizar»',
       },
       {
-        file: '4.jpeg',
+        file: '4.webp',
         alt: 'Panel principal con accesos a nueva requisición, catálogo y perfil',
       },
       {
-        file: '5.jpeg',
+        file: '5.webp',
         alt: 'Pantalla de perfil con los datos del empleado y las opciones de cambiar contraseña o cerrar sesión',
       },
     ],
@@ -104,11 +104,11 @@ export const projects: Project[] = [
     ],
     images: [
       {
-        file: '1.jpg',
+        file: '1.webp',
         alt: 'Formulario de datos personales del registro de usuarios, con los campos todavía vacíos',
       },
       {
-        file: '2.jpg',
+        file: '2.webp',
         alt: 'Formulario de dirección y tabla de registros, sin filas todavía, con columnas de nombre, domicilio y teléfonos',
       },
     ],
@@ -135,15 +135,15 @@ export const projects: Project[] = [
     ],
     images: [
       {
-        file: '1.jpg',
+        file: '1.webp',
         alt: 'Documentación Swagger de la API con endpoints de autenticación, categorías y chats',
       },
       {
-        file: '2.jpg',
+        file: '2.webp',
         alt: 'Documentación Swagger de los endpoints de productos, con la lista de esquemas de datos colapsada',
       },
       {
-        file: '3.jpg',
+        file: '3.webp',
         alt: 'Esquemas DTO de la API, como LoginDTO y RegisterDTO, con los campos obligatorios marcados',
       },
     ],
@@ -171,11 +171,11 @@ export const projects: Project[] = [
     ],
     images: [
       {
-        file: '1.png',
+        file: '1.webp',
         alt: 'Documentación Swagger de la API con endpoints de emociones y notas',
       },
       {
-        file: '2.png',
+        file: '2.webp',
         alt: 'Documentación Swagger con endpoints de notas y de usuarios, como registro, ingreso y consulta de apodo',
       },
     ],

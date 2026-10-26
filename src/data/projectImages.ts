@@ -10,14 +10,14 @@
  * Los archivos que existan en la carpeta pero no estén definidos en
  * `projects.ts` se ignoran.
  *
- * Formatos admitidos: jpg, jpeg, png, webp, avif y svg.
+ * Las versiones optimizadas del sitio usan WebP.
  */
 
 /**
- * Extensiones admitidas dentro de las carpetas de proyecto.
- * Deben coincidir con las del patrón del glob de abajo.
+ * Extensión servida dentro de las carpetas de proyecto.
+ * Debe coincidir con la del patrón del glob de abajo.
  */
-const IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp', 'avif', 'svg'] as const
+const IMAGE_EXTENSIONS = ['webp'] as const
 
 /** Imagen descubierta en el disco. */
 export interface DiscoveredImage {
@@ -46,7 +46,7 @@ export interface ProjectImage {
  * del recurso, así que no hay que procesar ningún módulo.
  */
 const imageModules = import.meta.glob<string>(
-  '../assets/img/projects/*/*.{jpg,jpeg,png,webp,avif,svg}',
+  '../assets/img/projects/*/*.webp',
   {
     eager: true,
     query: '?url',

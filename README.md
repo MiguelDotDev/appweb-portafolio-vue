@@ -13,7 +13,7 @@ Portafolio de desarrollador fullstack construido con Vue 3 y Vite.
 - **Inicio**: presentación, correo de contacto, accesos a Proyectos y Acerca de mí, redes sociales y descarga del CV.
 - **Proyectos**: cuatro proyectos con carrusel de imágenes, resumen, etiquetas tecnológicas y enlaces a repositorio o demo.
 - **Experiencia**: dos experiencias con periodo, actividades, tecnologías y enlace al proyecto en GitHub.
-- **Stack tecnológico**: 36 tecnologías agrupadas en cinco categorías.
+- **Stack tecnológico**: 31 tecnologías agrupadas en cinco categorías.
 - **Certificaciones y Formación**: credenciales filtrables por categoría, con visor de evidencia PDF y, cuando existe, enlace de verificación.
 - **Acerca de mí**: descripción, estudios y datos de contacto.
 
@@ -60,6 +60,7 @@ Requiere Node.js `^22.18.0 || >=24.12.0`, según el campo `engines`, y pnpm (loc
 │   ├── composables/        # lógica reutilizable del carrusel
 │   ├── data/               # contenido editable
 │   ├── router/             # configuración de vue-router
+│   ├── types/              # declaraciones de tipos
 │   ├── App.vue
 │   └── main.ts
 ├── .env

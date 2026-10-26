@@ -3,9 +3,8 @@ import SectionHeading from '@/components/SectionHeading.vue'
 import { description, studies } from '@/data/about'
 import { contact } from '@/data/contact'
 
-function getTelHref(phone: string): string {
-  const cleaned = phone.replace(/[\s()-]/g, '')
-  return `tel:${cleaned}`
+function getWhatsAppHref(phone: string): string {
+  return `https://wa.me/${phone.replace(/\D/g, '')}`
 }
 </script>
 
@@ -106,10 +105,12 @@ function getTelHref(phone: string): string {
 
         <div class="mt-6 grid gap-4 sm:grid-cols-2">
           <div
+            data-aos="fade-up"
             class="rounded-xl border border-white/10 bg-surface/60 p-4 transition-colors duration-200 hover:border-teal-400/30 sm:p-5"
             :class="contact.phone ? '' : 'sm:col-span-2'"
           >
             <p class="font-mono text-xs font-medium uppercase tracking-wide text-slate-500">Correo</p>
+            <p class="mt-1 text-xs text-slate-400">Contacto por correo electrónico</p>
             <a
               :href="`mailto:${contact.email}`"
               class="mt-2 inline-flex font-mono text-sm text-slate-200 transition-colors hover:text-teal-300 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400"
@@ -121,12 +122,16 @@ function getTelHref(phone: string): string {
 
           <div
             v-if="contact.phone"
+            data-aos="fade-up"
+            data-aos-delay="90"
             class="rounded-xl border border-white/10 bg-surface/60 p-4 transition-colors duration-200 hover:border-teal-400/30 sm:p-5"
           >
             <p class="font-mono text-xs font-medium uppercase tracking-wide text-slate-500">Teléfono</p>
+            <p class="mt-1 text-xs text-slate-400">Llamadas y WhatsApp</p>
             <a
-              :href="getTelHref(contact.phone)"
+              :href="getWhatsAppHref(contact.phone)"
               class="mt-2 inline-flex font-mono text-sm text-slate-200 transition-colors hover:text-teal-300 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400"
+              :aria-label="`Abrir chat de WhatsApp con ${contact.phone}`"
             >
               {{ contact.phone }}
             </a>

@@ -28,13 +28,15 @@ const sectionLinks = [
           <span class="h-3 w-3 rounded-full bg-red-500/70"></span>
           <span class="h-3 w-3 rounded-full bg-yellow-500/70"></span>
           <span class="h-3 w-3 rounded-full bg-emerald-500/70"></span>
-          <span class="ml-3 truncate font-mono text-xs text-slate-400">miguel.jpg</span>
+          <span class="ml-3 truncate font-mono text-xs text-slate-400">miguel.webp</span>
         </div>
         <img
-          src="@/assets/img/profile.png"
+          src="@/assets/img/profile.webp"
           alt="Retrato de Miguel Angel Nuñez Gomez"
-          width="1080"
-          height="1080"
+          width="1024"
+          height="1024"
+          fetchpriority="high"
+          decoding="async"
           class="h-auto w-full object-cover grayscale-[15%]"
         />
       </div>

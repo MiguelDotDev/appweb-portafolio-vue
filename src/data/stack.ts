@@ -24,9 +24,7 @@ import vueIcon from 'devicon/icons/vuejs/vuejs-original.svg'
 import jqueryIcon from 'devicon/icons/jquery/jquery-original.svg'
 import tailwindIcon from 'devicon/icons/tailwindcss/tailwindcss-original.svg'
 import dotnetIcon from 'devicon/icons/dotnetcore/dotnetcore-original.svg'
-import dotnetOriginalIcon from 'devicon/icons/dotnetcore/dotnetcore-original.svg'
 import flaskIcon from 'devicon/icons/flask/flask-original.svg'
-import springIcon from 'devicon/icons/spring/spring-original.svg'
 import mssqlIcon from 'devicon/icons/microsoftsqlserver/microsoftsqlserver-original.svg'
 import mysqlIcon from 'devicon/icons/mysql/mysql-original.svg'
 import mongodbIcon from 'devicon/icons/mongodb/mongodb-original.svg'
@@ -39,8 +37,6 @@ import githubActionsIcon from 'devicon/icons/githubactions/githubactions-origina
 import githubIcon from 'devicon/icons/github/github-original.svg'
 import postmanIcon from 'devicon/icons/postman/postman-original.svg'
 import figmaIcon from 'devicon/icons/figma/figma-original.svg'
-import linuxIcon from 'devicon/icons/linux/linux-original.svg'
-import markdownIcon from 'devicon/icons/markdown/markdown-original.svg'
 import vscodeIcon from 'devicon/icons/vscode/vscode-original.svg'
 import visualstudioIcon from 'devicon/icons/visualstudio/visualstudio-original.svg'
 import archlinuxIcon from 'devicon/icons/archlinux/archlinux-original.svg'
@@ -62,10 +58,6 @@ export interface TechCategory {
   techs: Tech[]
 }
 
-/** Logotipo de Render (simple-icons, licencia CC0). */
-const renderIconPath =
-  'M18.263.007c-3.121-.147-5.744 2.109-6.192 5.082-.018.138-.045.272-.067.405-.696 3.703-3.936 6.507-7.827 6.507-1.388 0-2.691-.356-3.825-.979a.2024.2024 0 0 0-.302.178V24H12v-8.999c0-1.656 1.338-3 2.987-3h2.988c3.382 0 6.103-2.817 5.97-6.244-.12-3.084-2.61-5.603-5.682-5.75'
-
 export const stackCategories: TechCategory[] = [
   {
     id: 'lenguajes',
@@ -79,7 +71,6 @@ export const stackCategories: TechCategory[] = [
       { name: 'Java', icon: javaIcon },
       { name: 'Python', icon: pythonIcon },
       { name: 'TypeScript', icon: typescriptIcon },
-      { name: 'Markdown', icon: markdownIcon },
     ],
   },
   {
@@ -98,10 +89,8 @@ export const stackCategories: TechCategory[] = [
     id: 'backend-datos',
     title: 'Backend y bases de datos',
     techs: [
-      { name: 'ASP.NET Core', icon: dotnetIcon },
-      { name: 'ASP.NET Framework', icon: dotnetIcon },
+      { name: 'ASP.NET Core / Framework', icon: dotnetIcon },
       { name: 'Flask', icon: flaskIcon },
-      { name: 'Spring Boot', icon: springIcon },
       { name: 'Microsoft SQL Server (MSSQL)', icon: mssqlIcon },
       { name: 'MySQL', icon: mysqlIcon },
       { name: 'MongoDB', icon: mongodbIcon },
@@ -116,7 +105,6 @@ export const stackCategories: TechCategory[] = [
       { name: 'Docker', icon: dockerIcon },
       { name: 'Netlify', icon: netlifyIcon },
       { name: 'Azure', icon: azureIcon },
-      { name: 'Render', iconPath: renderIconPath },
       { name: 'GitHub Actions', icon: githubActionsIcon },
     ],
   },
@@ -129,7 +117,6 @@ export const stackCategories: TechCategory[] = [
       { name: 'GitHub', icon: githubIcon },
       { name: 'Postman', icon: postmanIcon },
       { name: 'Figma', icon: figmaIcon },
-      { name: 'Linux', icon: linuxIcon },
       { name: 'Arch Linux', icon: archlinuxIcon },
     ],
   },
