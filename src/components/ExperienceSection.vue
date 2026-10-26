@@ -38,9 +38,9 @@ import { experiences } from '@/data/experience'
           >
             <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <p class="font-display text-xl font-semibold text-white sm:text-2xl">
+                <h3 class="m-0 font-display text-xl font-semibold text-white sm:text-2xl">
                   {{ experience.organization }}
-                </p>
+                </h3>
                 <p class="mt-1 font-mono text-xs font-medium uppercase tracking-[0.24em] text-teal-300">
                   {{ experience.type }}
                 </p>

@@ -14,7 +14,7 @@ const year = new Date().getFullYear()
           <span class="text-teal-400">&lt;</span>Miguel<span class="text-teal-400">.dev</span
           ><span class="text-teal-400">/&gt;</span>
         </span>
-        <p class="font-mono text-xs text-slate-400">© {{ year }} Miguel Angel Nuñez Gomez</p>
+        <p class="font-mono text-xs text-slate-400">© {{ year }} Miguel Angel Núñez Gómez</p>
       </div>
 
       <ul class="flex items-center gap-2" role="list">

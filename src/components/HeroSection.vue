@@ -62,8 +62,7 @@ const sectionLinks = [
       </p>
 
       <p class="mt-4 max-w-md text-sm leading-relaxed text-slate-400 sm:text-base">
-        Construyo aplicaciones web de extremo a extremo, del backend a la interfaz, con foco en código
-        limpio, rendimiento y buena experiencia de usuario.
+        ¡Hola! Soy desarrollador en formación y un apasionado de la programación. Me gustan los retos porque son una oportunidad de aprender. He realizado proyectos con tecnologías de backend y frontend.
       </p>
 
       <div class="mt-5 flex flex-col items-center gap-1 lg:items-start">

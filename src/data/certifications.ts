@@ -16,7 +16,7 @@
  */
 
 /** Categorías internas usadas por los filtros. */
-export type CertificationCategory = 'certificaciones' /*| 'cursos'*/ | 'ingles'
+export type CertificationCategory = /*'certificaciones' |*/ 'cursos' | 'ingles'
 
 export interface Certification {
   /** Identificador único de la credencial. */
@@ -52,14 +52,14 @@ export interface CertificationFilter {
 export const certificationFilters: CertificationFilter[] = [
   { value: 'todos', label: 'Todos' },
   { value: 'ingles', label: 'Inglés' },
-  { value: 'certificaciones', label: 'Certificaciones' },
-  //{ value: 'cursos', label: 'Cursos' },
+  //{ value: 'certificaciones', label: 'Certificaciones' },
+  { value: 'cursos', label: 'Cursos' },
 ]
 
 /** Nombre visible de cada categoría, usado en el badge de las tarjetas. */
 export const categoryLabels: Record<CertificationCategory, string> = {
-  certificaciones: 'Certificación',
-  //cursos: 'Curso',
+  //certificaciones: 'Certificación',
+  cursos: 'Curso',
   ingles: 'Inglés',
 }
 
@@ -91,7 +91,7 @@ export const certifications: Certification[] = [
     id: 'fundamentos-python-1',
     nombre: 'Fundamentos de Python 1',
     emisor: 'Cisco Networking Academy',
-    categoria: 'certificaciones',
+    categoria: 'cursos',
     fecha: 'Enero 1, 2025',
     resultado: 'Aprobado',
     pdfUrl: `${evidenciasBase}fundamentos-python-1-MiguelNunez.pdf`,
@@ -101,7 +101,7 @@ export const certifications: Certification[] = [
     id: 'fundamentos-python-2',
     nombre: 'Fundamentos de Python 2',
     emisor: 'Cisco Networking Academy',
-    categoria: 'certificaciones',
+    categoria: 'cursos',
     fecha: 'Mayo 8, 2026',
     resultado: 'Aprobado',
     pdfUrl: `${evidenciasBase}fundamentos-python-2-MiguelNunez.pdf`,
@@ -121,7 +121,7 @@ export const certifications: Certification[] = [
     id: 'javascript-essentials-1',
     nombre: 'JavaScript Essentials 1',
     emisor: 'Cisco Networking Academy',
-    categoria: 'certificaciones',
+    categoria: 'cursos',
     fecha: 'Mayo 29, 2026',
     resultado: 'Aprobado',
     pdfUrl: `${evidenciasBase}javascript-essentials-1-miguel-nunez.pdf`,
@@ -131,7 +131,7 @@ export const certifications: Certification[] = [
     id: 'partner-ndg-linux-essentials',
     nombre: 'Partner: NDG Linux Essentials',
     emisor: 'Cisco Networking Academy',
-    categoria: 'certificaciones',
+    categoria: 'cursos',
     fecha: 'Agosto 14, 2026',
     resultado: 'Aprobado',
     pdfUrl: `${evidenciasBase}partner-ndg-linux-essentials-miguel-nunez.pdf`,
@@ -141,7 +141,7 @@ export const certifications: Certification[] = [
     id: 'iot-transformacion-digital',
     nombre: 'Introducción al Internet de las Cosas y Transformación Digital',
     emisor: 'Cisco Networking Academy',
-    categoria: 'certificaciones',
+    categoria: 'cursos',
     fecha: 'Noviembre 20, 2024',
     resultado: 'Aprobado',
     pdfUrl: `${evidenciasBase}iot-transformacion-digital-miguel-nunez.pdf`,

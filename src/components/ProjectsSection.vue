@@ -85,7 +85,7 @@ function closeGallery(): void {
   >
     <SectionHeading id="proyectos-title" eyebrow="$ ls ./proyectos" title="Proyectos" />
 
-    <div class="mb-8 space-y-4 sm:mb-10">
+    <div class="mb-8 space-y-4 sm:mb-10" data-aos="fade-up">
       <p class="max-w-3xl text-base leading-relaxed text-slate-400">
         Estos son algunos de los proyectos en los que he trabajado. Puedes descubrir más de mis desarrollos, experimentos y proyectos en mi perfil de GitHub.
       </p>

@@ -22,7 +22,7 @@ function getTelHref(phone: string): string {
         <!-- Subsección: Descripción -->
         <div id="acerca-descripcion" class="lg:col-span-7 scroll-mt-28" data-aos="fade-up">
           <h3 class="font-display text-xl font-semibold text-white">
-            <span class="mr-2 font-mono text-sm text-teal-400" aria-hidden="true">//</span>Descripción
+            <span class="mr-2 font-mono text-sm text-teal-400" aria-hidden="true">//</span>Biografía
           </h3>
 
           <div class="mt-5 space-y-4 text-[15px] leading-relaxed text-slate-400">
