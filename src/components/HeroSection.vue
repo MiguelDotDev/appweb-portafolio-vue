@@ -60,11 +60,11 @@ const sectionLinks = [
       </h1>
 
       <p class="mt-4 font-mono text-lg text-slate-400">
-        <span class="text-slate-600">&gt;</span> Desarrollador Fullstack <br/>
+        <span class="text-slate-600">&gt;</span> Desarrollador de Software<br/>
       </p>
 
       <p class="mt-4 max-w-md text-sm leading-relaxed text-slate-400 sm:text-base">
-        ¡Hola! Soy desarrollador en formación y un apasionado de la programación. Me gustan los retos porque son una oportunidad de aprender. He realizado proyectos con tecnologías de backend y frontend.
+        ¡Hola! Soy desarrollador de software con enfoque en backend .NET. He desarrollado sistemas y APIs utilizando C#, ASP.NET y SQL Server, además de participar en proyectos frontend.
       </p>
 
       <div class="mt-5 flex flex-col items-center gap-1 lg:items-start">

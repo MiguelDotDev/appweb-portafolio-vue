@@ -92,7 +92,7 @@ export const certifications: Certification[] = [
     nombre: 'Fundamentos de Python 1',
     emisor: 'Cisco Networking Academy',
     categoria: 'cursos',
-    fecha: 'Enero 1ro, 2025',
+    fecha: 'Enero 1, 2025',
     resultado: 'Aprobado',
     pdfUrl: `${evidenciasBase}fundamentos-python-1-MiguelNunez.pdf`,
     verifyUrl: 'https://www.netacad.com/recognitions/verify/c544bef3-50b9-482b-a33b-479b7af32c7f',

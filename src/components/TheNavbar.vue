@@ -25,7 +25,7 @@ const navLinks: NavLink[] = [
     id: 'acerca',
     label: 'Acerca de mí',
     children: [
-      { id: 'acerca-descripcion', label: 'Descripción', href: '#acerca-descripcion' },
+      { id: 'acerca-descripcion', label: 'Biografía', href: '#acerca-descripcion' },
       { id: 'acerca-estudios', label: 'Estudios', href: '#acerca-estudios' },
       { id: 'acerca-contacto', label: 'Contáctame', href: '#acerca-contacto' },
     ],

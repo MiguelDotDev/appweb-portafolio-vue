@@ -14,8 +14,9 @@ export interface Study {
 }
 
 export const description: string[] = [
-  'Soy estudiante de Ingeniería en Gestión y Desarrollo de Software en la Universidad Tecnológica de Tula-Tepeji, donde antes cursé el Técnico Superior Universitario en Desarrollo de Software Multiplataforma. Durante mi estadía profesional en Grupo Real Hoteles analicé, diseñé y desarrollé un sistema web con ASP.NET MVC y SQL Server para gestionar requisiciones internas. Antes, en mi servicio dual en Access Tecnologías, desarrollé un catálogo web con carrito y notificaciones por correo usando PHP y MySQL.',
-  'Mi trabajo se centra en el backend con C# y ASP.NET, en bases de datos relacionales y en interfaces web con JavaScript, HTML y CSS. Tengo formación en Python, JavaScript y Linux con Cisco Networking Academy, y una evaluación de inglés con resultado C1. Busco una posición de desarrollo donde pueda seguir creciendo en backend y en proyectos web completos.'
+  'Soy estudiante de Ingeniería en Gestión y Desarrollo de Software en la Universidad Tecnológica de Tula-Tepeji, donde previamente cursé el Técnico Superior Universitario en Desarrollo de Software Multiplataforma. Durante mi estadía profesional en Grupo Real Hoteles, analicé, diseñé y desarrollé un sistema web con ASP.NET MVC y SQL Server para gestionar requisiciones internas. Anteriormente, como parte de mi formación dual en Access Tecnologías, desarrollé un catálogo web con carrito de compras y notificaciones por correo electrónico utilizando PHP y MySQL.',
+  'Mi trabajo se centra en el desarrollo backend con C# y ASP.NET, las bases de datos relacionales y el desarrollo de interfaces web con JavaScript, HTML y CSS. Cuento con formación en Python, JavaScript y Linux a través de Cisco Networking Academy.',
+  'Me mantengo en constante aprendizaje, explorando nuevas metodologías y herramientas para mejorar mi forma de desarrollar software. Actualmente, estoy aprendiendo sobre SDD (Spec-Driven Development) para trabajar de manera más estructurada con agentes de inteligencia artificial, y ampliando mis conocimientos en arquitectura de microservicios y el patrón CQRS. Busco seguir creciendo profesionalmente en el desarrollo backend, profundizar en el diseño de software y participar en proyectos que representen nuevos retos técnicos.'
 ]
 
 export const studies: Study[] = [
