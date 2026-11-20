@@ -1,0 +1,52 @@
+name: Deploy a Netlify
+
+# Compila en GitHub Actions y sube solo dist/ a Netlify,
+# para no gastar minutos de compilación en Netlify.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # Incluye vue-tsc (chequeo de tipos) y vite build
+      - run: pnpm build
+
+      # shortcut: netlify-cli fijado solo al major 17, fijar versión exacta si cambia su comportamiento
+      - name: Deploy a producción (push a main)
+        if: github.event_name == 'push'
+        run: npx --yes netlify-cli@17 deploy --dir=dist --prod --message "${{ github.sha }}"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+      # Los PR de forks no reciben secretos; este paso solo corre para PR del mismo repo
+      - name: Vista previa (pull request)
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        run: npx --yes netlify-cli@17 deploy --dir=dist --alias "pr-${{ github.event.number }}" --message "PR ${{ github.event.number }}"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

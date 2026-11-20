@@ -6,7 +6,7 @@ Portafolio de desarrollador fullstack construido con Vue 3 y Vite.
 
 - [Sitio en vivo](https://migueldotdev.netlify.app)
 - [GitHub](https://github.com/MiguelDotDev)
-- [LinkedIn](https://linkedin.com/in/miguel-angel-núñez-gómez-2a46a4431)
+- [LinkedIn](https://linkedin.com/in/miguel-nunez-dev)
 
 ## Qué muestra el sitio
 
